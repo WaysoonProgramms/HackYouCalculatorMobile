@@ -2,6 +2,8 @@ package com.waysoonprogramms.hackyoucalculatormobile;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -26,44 +28,65 @@ public class MainActivity extends AppCompatActivity {
     public void clickBtn(View view) {
         String txt = TextInput.getText().toString();
         txt = txt.toLowerCase();
-        for (int i = txt.length() - 1; i != 1; i--) {
+        for (int i = txt.length() - 1; i >= 0; i--) {
+            if (errcode == 1) {
+                break;
+            }
             switch (txt.charAt(i)) {
                 case 'o':
                     text += '0';
-                    break;
+                    continue;
                 case 'i':
                     text += '1';
-                    break;
+                    continue;
                 case 'l':
                     text += '1';
-                    break;
+                    continue;
                 case 'e':
                     text += '3';
-                    break;
+                    continue;
                 case 'h':
                     text += '4';
-                    break;
+                    continue;
                 case 's':
                     text += '5';
-                    break;
+                    continue;
                 case 'g':
                     text += '6';
-                    break;
+                    continue;
                 case 'b':
                     text += '9';
-                    break;
+                    continue;
                 default:
                     errcode = 1;
                     break;
             }
         }
         if (errcode == 0) {
-            Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
+            Formatter f = new Formatter();
+            f.format("Введи %s на калькуляторе и переверни его!", text);
+            GetMessage(f.toString(), "Реузльтат");
         }
         else {
             Toast.makeText(MainActivity.this, "Недопустимые символы!", Toast.LENGTH_SHORT).show();
         }
         text = "";
         txt = "";
+        errcode = 0;
+        TextInput.setText("");
+    }
+
+    public void GetMessage(String message, String title) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
