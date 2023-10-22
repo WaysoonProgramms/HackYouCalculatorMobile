@@ -13,7 +13,8 @@ import java.util.Formatter;
 public class MainActivity extends AppCompatActivity {
 
     private TextInputEditText TextInput;
-    String text;
+    String text = "";
+    int errcode = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +26,44 @@ public class MainActivity extends AppCompatActivity {
     public void clickBtn(View view) {
         String txt = TextInput.getText().toString();
         txt = txt.toLowerCase();
-        char[] textArr = txt.toCharArray();
-        for (int i = txt.length(); i != 1; i--) {
-            if (textArr[i] == 'l') {text += "1";}
-            if (textArr[i] == 'b') {text += "9";}
-            if (textArr[i] == 'h') {text += "4";}
-            if (textArr[i] == 's') {text += "5";}
-            if (textArr[i] == 'g') {text += "6";}
-            if (textArr[i] == 'e') {text += "3";}
-            if (textArr[i] == 'i') {text += "1";}
-            if (textArr[i] == 'o') {text += "0";}
-            else { Toast.makeText(this, "Недопустимые символы!", Toast.LENGTH_SHORT).show(); break; }
-
+        for (int i = txt.length() - 1; i != 1; i--) {
+            switch (txt.charAt(i)) {
+                case 'o':
+                    text += '0';
+                    break;
+                case 'i':
+                    text += '1';
+                    break;
+                case 'l':
+                    text += '1';
+                    break;
+                case 'e':
+                    text += '3';
+                    break;
+                case 'h':
+                    text += '4';
+                    break;
+                case 's':
+                    text += '5';
+                    break;
+                case 'g':
+                    text += '6';
+                    break;
+                case 'b':
+                    text += '9';
+                    break;
+                default:
+                    errcode = 1;
+                    break;
+            }
         }
-
+        if (errcode == 0) {
+            Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(MainActivity.this, "Недопустимые символы!", Toast.LENGTH_SHORT).show();
+        }
+        text = "";
+        txt = "";
     }
 }
