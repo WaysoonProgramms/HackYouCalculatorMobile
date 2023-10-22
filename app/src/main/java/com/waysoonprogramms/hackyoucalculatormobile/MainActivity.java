@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         if (errcode == 0 && !(text.contentEquals(""))) {
             Formatter f = new Formatter();
             f.format("Введи %s на калькуляторе и переверни его!", text);
-            GetMessage(f.toString(), "Реузльтат");
+            GetMessage(f.toString(), "Результат");
         }
         else {
             Toast.makeText(MainActivity.this, "Недопустимые символы!", Toast.LENGTH_SHORT).show();
