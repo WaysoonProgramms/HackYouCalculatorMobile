@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        if (errcode == 0) {
+        if (errcode == 0 && !(text.contentEquals(""))) {
             Formatter f = new Formatter();
             f.format("Введи %s на калькуляторе и переверни его!", text);
             GetMessage(f.toString(), "Реузльтат");

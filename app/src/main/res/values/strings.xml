@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HackYouCalculator</string>
+    <string name="app_name">HackYourCalculator</string>
     <string name="title">Взломай свой калькулятор</string>
     <string name="subtitle">Введи слово на латинице:</string>
     <string name="input_hint">Например: hi</string>
